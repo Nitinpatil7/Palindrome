@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=form, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Programm To check String is palindrome or Not palindrome</h1>
+    <form id="palindrome-form">
+      <input type="text"  id="username" placeholder="Enter a string">
+      <button type="submit">Submit</button>
+    </form>
+    <p id="result"></p>
+    <p id="analysis"></p>
+    <script>
+        document.getElementById("palindrome-form").addEventListener("submit", function(event){
+            event.preventDefault();
+
+            name=document.getElementById("username").value;
+            function checkpalindrome(first){
+                var one = first.replace(/[^A-Za-z0-9]/g, '').toLowerCase();
+             var two=one.split('').reverse().join('');
+             return one===two;
+            }
+            result= checkpalindrome(name)?"This String is Palindrome" : "This string is not palindrome";
+            document.getElementById("result").innerHTML=result;
+            console.log(result);
+
+            const numchar= name.length;
+            const numwords= name.trim().split(/\s+/).
+            filter(function(word){
+                return word.length>0;
+            }).length;
+            const vowels=name.match(/[aeiouAEIOU]/g);
+            var numvowels=vowels? vowels.length :0;
+            var numspace= name.split('').length -1;
+            var digits=name.match[/[0-9]/g];
+            var numdigit= digits? digit.length :0;
+            var specialchar= name.match(/[^a-zA-Z0-9\s]/g);
+            var numspecialchar=specialchar?specialchar.length:0;
+            document.getElementById("analysis").innerHTML=`
+          Analysis result : <br>
+          Number of Character: ${numchar}<br>
+          Number of Words: ${numwords}<br>
+          Number of vowels: ${numvowels}<br>
+          Number of spaces: ${numspace}<br>
+          Number of Digit: ${numdigit}<br>
+          Number of SpecialCharacter: ${numspecialchar}<br>
+            `  ;
+            console.log(`
+                Number of characters: ${numchar}
+                Number of words: ${numwords}
+                Number of vowels: ${numvowels}
+                Number of spaces: ${numspace}
+                Number of digits: ${numdigit}
+                Number of special characters: ${numspecialchar}
+            `);
+        })
+    </script>
+</body>
+
+</html>
